@@ -14,13 +14,22 @@ const defaultTodos = [
 ];
 
 function App() {
+  //Agregamos el nuevo estado
+  const [todos, setTodos] = React.useState(defaultTodos); 
+  
   const [searchValue, setSearchValue]= React.useState ('');
+
+  //Variables CounterTodos
+  const completedTodos = todos.filter(
+    todo=> !!todo.completed
+  ).length;
+  const totalTodos = todos.length;
    
   console.log('Los usuarios buscan todos de ' + searchValue);
   
   return (
     <React.Fragment>
-      <TodoCounter completed={16} total={25} />
+      <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch 
         //Enviamos las propiedades 
         searchValue={searchValue}
