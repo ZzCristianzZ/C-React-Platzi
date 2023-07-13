@@ -19,11 +19,17 @@ function App() {
   
   const [searchValue, setSearchValue]= React.useState ('');
 
-  //Variables CounterTodos
   const completedTodos = todos.filter(
     todo=> !!todo.completed
   ).length;
   const totalTodos = todos.length;
+
+  //Creamos el nuevo estado derivado para el Bucador de coincidencias
+  const searchdTodos = todos.filter(
+    (todo)=> {
+      return todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+    }
+  );  
    
   console.log('Los usuarios buscan todos de ' + searchValue);
   
@@ -31,13 +37,12 @@ function App() {
     <React.Fragment>
       <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch 
-        //Enviamos las propiedades 
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
 
       <TodoList>
-        {defaultTodos.map(todo =>(
+        {searchdTodos.map(todo =>(
           <TodoItem 
           key={todo.text} 
           text={todo.text}
