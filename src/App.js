@@ -43,6 +43,20 @@ function App() {
 
     setTodos(newTodos);
     //llamamos el actualizador del estado y enviamos el array modificado.
+  };
+// E L I M I N A R  T O D O S
+   // Una funcion que recibe como argumento un texto cuando se ejecuta el evento Onclick
+  const deleteTodo = (text) => {
+  // Una constante que llama al array existente todos y crea una copia denominada newTodos
+  const newTodos = [...todos];
+  // Una variable que se define como el metodo de encontrar el mismo texto que recibimos como argumento dentro del array ahora denominado newTodos
+  const todoIndex = newTodos.findIndex(
+    (todo)=>todo.text == text
+    // si se encuentra dicho texto exactamanete igual a alguno que se encuentra en nuestro array este pasa a ser el text, o argumento que habiamos recibido.
+  ) 
+  newTodos.splice(todoIndex, 1);
+  // Con esta oracion lo que hacemos es eliminar el todo que requerimos iniciando desde el index del objeto del todo que escogimos y eliminando solamente un todo u objeto.
+  setTodos(newTodos);
   }
   
   return (
@@ -60,6 +74,7 @@ function App() {
           text={todo.text}
           completed={todo.completed}
           onComplete={()=> completeTodo(todo.text)}
+          onDelete={()=> deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
