@@ -6,17 +6,26 @@ import { CreateTodoButton } from './CreateTodoButton';
 import React from 'react';
 
 // LocalStorage, Comentamos los defaulttodos
+
 // const defaultTodos = [
 //   {text: 'Cortar Cebolla', completed: true},
 //   {text:'Tomar el Curso de Intro a Rect.js', completed:false},
 //   {text: 'Llorar con la llorona', completed:false},
 //   {text: 'LALALALALA', completed:false}
 // ];
- 
+// localStorage.setItem('TODOS_V1', defaultTodos);
+// localStorage.getItem('TODOS_v1');
+
+// const stringifiedTodos = JSON.stringify(defaultTodos)
+// JSON.parse(stringifiedTodos)
+
 // Al haber comentado el array dentro de esta funcion ya no lo recibiriamos sino tendriamos el argumento desde localStorage. Pero no lo vamos a llamar directamente desde ahi.
 function App() {
   // Vamos a crear una variable que sea igual a conseguir el Item, a TODOS_V1. Con esto lo que conseguimos es lograr que la aplicacion revise si hay algo en el localStorage y si este tiene informacion de nuestros TODOS entonces ese sera nuestro estado inicial. Y esta la pasamos a la funcion que renderiza nuestros Todos 
-  let parsedTodos = localStorage.getItem('TODOS_V1'); 
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  // lo que realizaremos para solucionar la renderizacion de nuestros objetos es crear una nueva variable que llame a nuestro codigo en el local Stroge, y en nuestro parsedTodos lo que realizaremos es llamar a la funcion JSON.parse cpn el argumento de los localStorageTodos/
+
+  let parsedTodos = JSON.parse(localStorageTodos)
 
   const [todos, setTodos] = React.useState(parsedTodos); 
   const [searchValue, setSearchValue]= React.useState ('');
