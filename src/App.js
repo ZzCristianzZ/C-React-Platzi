@@ -33,12 +33,14 @@ function App() {
  
   // La funcion JSON.parse es una funcion que sirve para analizar o convertir una cadena JSON, en un objeto JavaScript.
    let parsedTodos;
-    // Para que no se rompa la aplicacion cuando no tenga nada en el local strorage, vamos a crear un condicional
+    // Para que no se rompa la aplicacion cuando no tenga nada en el local storage, vamos a crear un condicional
     // Si no hay nada en el localStorage, entonces nuestras varibles parsedTodos sea igual a un array vacio.
-    // Tambien deseo que de una vez el localStorag me guarde un string vacio con el nombre TODOS_V1, y un array vacio que vamos a tranformar en codigo JSON.
+    // Tambien deseo que de una vez el localStorage me guarde un string vacio con el nombre TODOS_V1, y un array vacio que vamos a tranformar en codigo JSON.
 
     if (!localStorageTodos){
+      //En dado caso donde no haya datos, array o algun objeto con el nombre localStorgeTodos, que seria nuestro array base, entonces creamos el array con el nombre TODOS_V1, y transformamos el mismo en codigo JSON.
       localStorage.setItem('TODOS_V1', JSON.stringify([]));
+      // Definimos como variable parsedTodos el array vacio.Que seria el objeto que va a renderizar nuestra estado App.
       parsedTodos([]);
     }else{
       // parseTodos seria lo que sea en el local Storage transformandolo de cadena JSON a codigo JavaScript
@@ -57,6 +59,14 @@ function App() {
       return todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
     }
   );  
+  //Vamos a crear que va a guardar los todos y los estados
+ 
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  }
+  // que va a recibir los nuevos todos o array de todos para enviarselos al localStorage y por ende al estado.
+
 
   const completeTodo = (text) => {
     const newTodos = [...todos];
@@ -65,7 +75,7 @@ function App() {
     ) 
     newTodos[todoIndex].completed = 'true';
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
 
   };
   const deleteTodo = (text) => {
@@ -75,7 +85,7 @@ function App() {
   ) 
   newTodos.splice(todoIndex, 1);
 
-  setTodos(newTodos);
+  saveTodos(newTodos);
   }
   
   return (
