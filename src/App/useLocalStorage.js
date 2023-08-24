@@ -7,17 +7,30 @@ function useLocalStorage(itemName, initialValue){
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(false);
    
+    let parsedItem;
+
      React.useEffect(()=> {
-      const localStorageItem = localStorage.getItem(itemName);  
-      if (!localStorageItem){
-        localStorage.setItem(itemName, JSON.stringify(initialValue));
-  
-        parsedItem= initialValue;
-      }else{
-        parsedItem = JSON.parse(localStorageItem);
-      }
+      setTimeout(()=>{
+        //Encapsulamos el codigo con la idea de utilizar los actualizadores de nuestros estados de loading y error utilizando el try y el catch que nos permite mostrar si funciona o no, y capturar el error. 
+      try{
+        const localStorageItem = localStorage.getItem(itemName);  
+        if (!localStorageItem){
+          localStorage.setItem(itemName, JSON.stringify(initialValue));
     
-    })
+          parsedItem= initialValue;
+        }else{
+          parsedItem = JSON.parse(localStorageItem);
+          setItem(parsedItem);
+        }
+  
+        setLoading(false);
+      } catch(error){
+       // En dado caso que falle, tenemos que matar ese estado de carga 
+        setLoading(false);
+        setError(true);
+      }
+      }, 2000);
+    });
     
 
  
@@ -28,7 +41,12 @@ function useLocalStorage(itemName, initialValue){
        setItem(newItem);
      };
  
-     return [item, saveItem]; 
+     return {
+      item, 
+      saveItem,
+      loading,
+      error,
+    }; 
  
  }
 

@@ -3,9 +3,27 @@ import { useLocalStorage } from './useLocalStorage';
 import React from 'react';
 
 
+// localStorage.removeItem('TODOS_V1');
+
+// const defaultTodos = [
+//   { text: 'Cortar cebolla', completed: true},
+//   { text: 'Tomar el Curso de Intro a React.js', completed: false},
+//   { text: 'Llorar con la llorona', completed: false},
+//   { text: 'LALALALA', completed: false},
+//   { text: 'Usar estados derivados', completed: true},
+// ];
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+
 function App() {
   
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []); 
+  const {
+    item: todos, 
+    saveItem: saveTodos, 
+    loading,
+    error,
+
+  } = useLocalStorage('TODOS_V1', []); 
   const [searchValue, setSearchValue]= React.useState ('');
 
   const completedTodos = todos.filter(
@@ -41,7 +59,8 @@ function App() {
   
   return(
     <AppUI 
-      
+        loading={loading}
+        error={error}
         completedTodos={completedTodos}
         totalTodos={totalTodos}
         searchValue={searchValue}
