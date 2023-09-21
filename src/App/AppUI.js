@@ -1,4 +1,4 @@
-
+// Estoy haciendo algunas configuraciones para probar si funciona el acceso remoto desde mi portatil lenovo
 import { TodoCounter } from '../TodoCounter';
 import { TodoSearch } from '../TodoSearch/Index';
 import { TodoList } from '../TodoList/Index';
