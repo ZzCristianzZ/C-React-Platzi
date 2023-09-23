@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodosError.css';
+// import './TodosError.css';
 
 //Recibimos las propiedades 
 function TodosError(){
@@ -8,4 +8,4 @@ function TodosError(){
     );
 } 
     
-export{TodosError};
+export{TodosError}; 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './EmptyTodos.css';
+// import './EmptyTodos.css';
 
 //Recibimos las propiedades 
 function EmptyTodos(){

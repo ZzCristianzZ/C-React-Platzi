@@ -1,10 +1,16 @@
 import React from 'react';
 import './TodosLoading.css';
 
-//Recibimos las propiedades 
 function TodosLoading() {
     return(
-        <p>Cargando ... </p>
+        <div className="loadingTodo-container">
+            <span
+                className="loadingTodo-completeIcon">
+            </span>
+            <p className="loadingTodo-text"></p>
+            <span 
+                className="loadingTodo-deleteIcon"></span>
+        </div>
     );
 } 
     
