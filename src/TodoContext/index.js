@@ -23,7 +23,7 @@ function TodoProvider ({ children }) {
           return todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
         }
       ); 
-      const [openModal, setOpenModal] = React.useState(false);
+      const [openModal, setOpenModal] = React.useState(true);
      
       const completeTodo = (text) => {
         const newItem = [...todos];
