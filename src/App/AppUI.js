@@ -47,10 +47,9 @@ function AppUI () {
                   />
                 ))}
             </TodoList>
-          < CreateTodoButton /> 
-  {/*En este modal deberia ir todos los componentes que deseo teletranportar entre nodos de Html, y dentro de este la funcionalidad de agregar Todos.
-  Al realizar esto nos encontramos con un problema y es el de darle a entender a nuestro componente modal, en que momento debe mostrarse o no, por lo que la funcion de 'Agregar Todos', es una funcion  que se muestra o se oculta segun lo necesitemos.Para ello vamos a manejar estados, que se denomine OpenModal para saber si este deberia estar abierto o no. La logica es preguntar si el estado del componenete esta abierto y si es asi entonces se debe renderizar el componente de Agregar Todo.
-  */}
+          < CreateTodoButton 
+            setOpenModal={setOpenModal}
+          /> 
      {
       openModal&&(
         <Modal>
