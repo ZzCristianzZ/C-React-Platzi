@@ -25,6 +25,10 @@ function TodoProvider ({ children }) {
       ); 
       const [openModal, setOpenModal] = React.useState(false);
      
+      const addTodo (text) => {
+        
+      }
+      
       const completeTodo = (text) => {
         const newItem = [...todos];
         const todoIndex = newItem.findIndex(
