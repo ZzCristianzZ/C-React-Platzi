@@ -25,8 +25,14 @@ function TodoProvider ({ children }) {
       ); 
       const [openModal, setOpenModal] = React.useState(false);
      
-      const addTodo (text) => {
+      const addTodo = (text) => {
+        const newTodos = [...todos];
+        newTodos.push({
+          text, 
+          completed: false, 
+        })
         
+        saveTodos(newTodos);
       }
       
       const completeTodo = (text) => {
@@ -63,6 +69,7 @@ function TodoProvider ({ children }) {
             deleteTodo,
             openModal,
             setOpenModal,
+            addTodo,
          }}>
             { children }
         </TodoContext.Provider>
